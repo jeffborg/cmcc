@@ -55,10 +55,10 @@ PAGES = [
   <aside class="card card-accent">
     <h2>Quick links</h2>
     <ul class="link-list">
-      <li><a href="membership/index.html">Join the club via Ridernet</a></li>
-      <li><a href="events/index.html">Browse club events</a></li>
-      <li><a href="news/index.html">Read the latest news</a></li>
-      <li><a href="get-involved/index.html">Volunteer at working bees and race days</a></li>
+      <li><a href="membership/">Join the club via Ridernet</a></li>
+      <li><a href="events/">Browse club events</a></li>
+      <li><a href="news/">Read the latest news</a></li>
+      <li><a href="get-involved/">Volunteer at working bees and race days</a></li>
     </ul>
   </aside>
 </section>
@@ -67,13 +67,13 @@ PAGES = [
     <img class="media-image" src="/assets/media/home-membership.jpg" alt="Membership tile from the legacy site">
     <h2>Membership</h2>
     <p>Membership gives riders access to club events, inclusion in the club championship, and the ability to obtain an MNSW race licence through an affiliated club.</p>
-    <p><a class="button" href="membership/index.html">Membership details</a></p>
+    <p><a class="button" href="membership/">Membership details</a></p>
   </article>
   <article class="card media-card">
     <img class="media-image" src="/assets/media/home-events.jpg" alt="Events tile from the legacy site">
     <h2>Meetings</h2>
-    <p>General meetings are held at 7pm on the first Tuesday of each month at the Khartoum Hotel in Kitchener. New faces are always welcome.</p>
-    <p><a class="button button-secondary" href="meetings/index.html">Meeting info</a></p>
+    <p>General meetings are held at 7pm on the first Tuesday of every other month (Feb, Apr, Jun, Aug, Oct, Dec) at the Khartoum Hotel in Kitchener. New faces are always welcome.</p>
+    <p><a class="button button-secondary" href="meetings/">Meeting info</a></p>
   </article>
   <article class="card media-card">
     <img class="media-image" src="/assets/media/home-contact.jpg" alt="Contact tile from the legacy site">
@@ -93,7 +93,7 @@ PAGES = [
         'content': '''
 <section class="card prose">
   <p>The existing club website describes Cessnock Motor Cycle Club as a place where knowledge, history, and community all come together. The club has long balanced family-friendly participation with serious racing, and it continues to rely on passionate members and volunteers to keep events running.</p>
-  <p>This rebuilt site keeps the public information that matters most and makes it easier to maintain in git. For detailed committee, meeting, and memorial information, use the links below.</p>
+  <p>This rebuild keeps the public information that matters most and makes it easier to maintain. For detailed committee, meeting, and memorial information, use the links below.</p>
 </section>
 <section class="card media-card">
   <img class="media-image" src="/assets/media/gallery-general.jpg" alt="General club photo from the legacy photo gallery">
@@ -102,17 +102,17 @@ PAGES = [
   <article class="card">
     <h2>Club officials</h2>
     <p>Meet the committee roles carried over from the current public site.</p>
-    <p><a class="button button-secondary" href="../officials/index.html">View officials</a></p>
+    <p><a class="button button-secondary" href="../officials/">View officials</a></p>
   </article>
   <article class="card">
     <h2>Club constitution</h2>
     <p>A plain-language summary of the constitution content published on the existing site.</p>
-    <p><a class="button button-secondary" href="../constitution/index.html">Read summary</a></p>
+    <p><a class="button button-secondary" href="../constitution/">Read summary</a></p>
   </article>
   <article class="card">
     <h2>Remembrance</h2>
     <p>A tribute to John Hall and his impact on the club and the wider riding community.</p>
-    <p><a class="button button-secondary" href="../remembrance/index.html">Read tribute</a></p>
+    <p><a class="button button-secondary" href="../remembrance/">Read tribute</a></p>
   </article>
 </section>
 '''.strip(),
@@ -203,15 +203,15 @@ PAGES = [
     {
         'slug': 'meetings',
         'title': 'Club meetings',
-        'eyebrow': 'Monthly catch-up',
+        'eyebrow': 'Bi-monthly catch-up',
         'intro': 'The club welcomes members and interested locals to attend and help shape the season ahead.',
         'description': 'Meeting time and location for Cessnock Motor Cycle Club.',
         'content': '''
 <section class="card prose">
-  <p>Cessnock Motor Cycle Club holds general meetings at <strong>7:00pm on the first Tuesday of every month</strong> at the <strong>Khartoum Hotel, Kitchener</strong>.</p>
+  <p>Cessnock Motor Cycle Club holds general meetings at <strong>7:00pm on the first Tuesday of every other month (Feb, Apr, Jun, Aug, Oct, Dec)</strong> at the <strong>Khartoum Hotel, Kitchener</strong>.</p>
   <p>The club's annual general meeting is held in December. Anyone interested in the club is welcome to attend, contribute ideas, and help support the future of local off road riding.</p>
   <p>Memberships are available online, and meetings are a great place to learn how to get involved with events, volunteering, and club life.</p>
-  <p><a class="button" href="../membership/index.html">View membership information</a></p>
+  <p><a class="button" href="../membership/">View membership information</a></p>
 </section>
 '''.strip(),
     },
@@ -245,7 +245,7 @@ PAGES = [
   <article class="card">
     <h2>Ways to help</h2>
     <ul class="detail-list">
-      <li>Attend monthly meetings and contribute ideas.</li>
+      <li>Attend bi-monthly meetings and contribute ideas.</li>
       <li>Help at working bees before club events.</li>
       <li>Volunteer on race day as a marshal, scorer, or support crew member.</li>
       <li>Work toward becoming an official for club-level and higher events.</li>
@@ -328,13 +328,13 @@ PAGES = [
     <img class="media-image" src="/assets/media/gallery-general.jpg" alt="General club gallery image">
     <h2>Australian Four Day Enduro 2018</h2>
     <p>The legacy event listing notes the 40th anniversary edition of the Australian 4 Day Enduro, returning to Cessnock where it all started.</p>
-    <p><a class="button button-secondary" href="a4de-2018/index.html">Open archive page</a></p>
+    <p><a class="button button-secondary" href="a4de-2018/">Open archive page</a></p>
   </article>
   <article class="card media-card">
     <img class="media-image" src="/assets/media/postie-gp-hero.jpg" alt="Australian Postie Bike GP 2019 event image">
     <h2>Australian Postie Bike GP 2019</h2>
     <p>A family-friendly street event in the Cessnock CBD featuring team racing on Honda CT110 Postie Bikes.</p>
-    <p><a class="button button-secondary" href="postie-bike-gp-2019/index.html">Open archive page</a></p>
+    <p><a class="button button-secondary" href="postie-bike-gp-2019/">Open archive page</a></p>
   </article>
 </section>
 <section class="card prose">
@@ -359,7 +359,7 @@ PAGES = [
     <li><strong>Location:</strong> Cessnock Showground</li>
   </ul>
   <p>This page is kept as a historical reference within the simplified static rebuild.</p>
-  <p><a class="button button-secondary" href="../index.html">Back to archive</a></p>
+  <p><a class="button button-secondary" href="../">Back to archive</a></p>
 </section>
 '''.strip(),
     },
@@ -386,7 +386,7 @@ PAGES = [
   </ul>
   <img class="media-image" src="/assets/media/postie-gp-course-layout.png" alt="Australian Postie Bike GP course layout">
   <p>The original page also outlined qualifying, the Cessnock Cup, a women's race, the main endurance-format GP, and recognition for major sponsor Cessnock Mitsubishi.</p>
-  <p><a class="button button-secondary" href="../index.html">Back to archive</a></p>
+  <p><a class="button button-secondary" href="../">Back to archive</a></p>
 </section>
 '''.strip(),
     },

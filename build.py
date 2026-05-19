@@ -27,8 +27,8 @@ def relative_prefix(slug: str) -> str:
 def relative_href(from_slug: str, to_slug: str) -> str:
     prefix = relative_prefix(from_slug)
     if not to_slug:
-        return f"{prefix}index.html"
-    return f"{prefix}{to_slug}/index.html"
+        return f"{prefix}"
+    return f"{prefix}{to_slug}/"
 
 
 def is_active(current_slug: str, nav_slug: str) -> bool:
@@ -201,7 +201,7 @@ def render_news_index(entries: list[dict[str, object]]) -> str:
   <p class="meta-line">{html.escape(format_date(entry.get("date")))}</p>
   <h2>{html.escape(str(entry["title"]))}</h2>
   <p>{html.escape(str(entry.get("summary", "")))}</p>
-  <p><a class="button button-secondary" href="{html.escape(str(entry["slug"]))}/index.html">Read article</a></p>
+  <p><a class="button button-secondary" href="{html.escape(str(entry["slug"]))}/">Read article</a></p>
 </article>'''
         )
     if not cards:
@@ -237,7 +237,7 @@ def render_events_index(entries: list[dict[str, object]]) -> str:
   <p class="meta-line">{html.escape(meta)}</p>
   <h2>{html.escape(str(entry["title"]))}</h2>
   <p>{html.escape(str(entry.get("summary", "")))}</p>
-  <p><a class="button button-secondary" href="{html.escape(str(entry["slug"]))}/index.html">View event</a></p>
+  <p><a class="button button-secondary" href="{html.escape(str(entry["slug"]))}/">View event</a></p>
 </article>'''
         )
     if not cards:
@@ -273,11 +273,11 @@ def with_dynamic_sections(page: dict[str, str], news: list[dict[str, object]], e
     published_events = [entry for entry in events if entry.get('published')][:2]
 
     news_items = ''.join(
-        f'<li><a href="news/{html.escape(str(entry["slug"]))}/index.html">{html.escape(str(entry["title"]))}</a> <span class="meta-inline">{html.escape(format_date(entry.get("date")))}</span></li>'
+        f'<li><a href="news/{html.escape(str(entry["slug"]))}/">{html.escape(str(entry["title"]))}</a> <span class="meta-inline">{html.escape(format_date(entry.get("date")))}</span></li>'
         for entry in published_news
     ) or '<li>No news posts yet.</li>'
     event_items = ''.join(
-        f'<li><a href="events/{html.escape(str(entry["slug"]))}/index.html">{html.escape(str(entry["title"]))}</a> <span class="meta-inline">{html.escape(format_date(entry.get("start_date")))}</span></li>'
+        f'<li><a href="events/{html.escape(str(entry["slug"]))}/">{html.escape(str(entry["title"]))}</a> <span class="meta-inline">{html.escape(format_date(entry.get("start_date")))}</span></li>'
         for entry in published_events
     ) or '<li>No events yet.</li>'
 
@@ -286,12 +286,12 @@ def with_dynamic_sections(page: dict[str, str], news: list[dict[str, object]], e
   <article class="card">
     <h2>Latest news</h2>
     <ul class="link-list">{news_items}</ul>
-    <p><a class="button button-secondary" href="news/index.html">All news</a></p>
+    <p><a class="button button-secondary" href="news/">All news</a></p>
   </article>
   <article class="card">
     <h2>Events</h2>
     <ul class="link-list">{event_items}</ul>
-    <p><a class="button button-secondary" href="events/index.html">All events</a></p>
+    <p><a class="button button-secondary" href="events/">All events</a></p>
   </article>
 </section>
 '''
@@ -428,6 +428,7 @@ def main() -> None:
     pages = build_pages()
     for page in pages:
         write_page(page)
+    shutil.copy(ROOT / '404.html', DIST / '404.html')
     print(f"Built {len(pages)} pages into {DIST}")
 
 
