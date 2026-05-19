@@ -183,6 +183,17 @@ a:hover {
   line-height: 1.2;
 }
 
+/* Card vertical alignment — flex column pushes button to bottom */
+.card-v {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+.card-v .btn-fill {
+  margin-top: auto;
+  padding-top: 0.75rem;
+}
+
 .media-card {
   overflow: hidden;
 }

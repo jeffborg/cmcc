@@ -63,23 +63,23 @@ PAGES = [
   </aside>
 </section>
 <section class="grid thirds">
-  <article class="card media-card">
+  <article class="card media-card card-v">
     <img class="media-image" src="/assets/media/home-membership.jpg" alt="Membership tile from the legacy site">
     <h2>Membership</h2>
     <p>Membership gives riders access to club events, inclusion in the club championship, and the ability to obtain an MNSW race licence through an affiliated club.</p>
-    <p><a class="button" href="membership/">Membership details</a></p>
+    <p class="btn-fill"><a class="button" href="membership/">Membership details</a></p>
   </article>
-  <article class="card media-card">
+  <article class="card media-card card-v">
     <img class="media-image" src="/assets/media/home-events.jpg" alt="Events tile from the legacy site">
     <h2>Meetings</h2>
     <p>General meetings are held at 7pm on the first Tuesday of every other month (Feb, Apr, Jun, Aug, Oct, Dec) at the Khartoum Hotel in Kitchener. New faces are always welcome.</p>
-    <p><a class="button button-secondary" href="meetings/">Meeting info</a></p>
+    <p class="btn-fill"><a class="button button-secondary" href="meetings/">Meeting info</a></p>
   </article>
-  <article class="card media-card">
+  <article class="card media-card card-v">
     <img class="media-image" src="/assets/media/home-contact.jpg" alt="Contact tile from the legacy site">
     <h2>Follow the club</h2>
     <p>For current updates, race announcements, and community news, the club's Facebook page remains the best public channel.</p>
-    <p><a class="button button-secondary" href="https://www.facebook.com/cessnockmotorcycleclub/">Visit Facebook</a></p>
+    <p class="btn-fill"><a class="button button-secondary" href="https://www.facebook.com/cessnockmotorcycleclub/">Visit Facebook</a></p>
   </article>
 </section>
 '''.strip(),
