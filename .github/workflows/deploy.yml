@@ -36,8 +36,10 @@ jobs:
       - name: Build static site
         run: python build.py
 
-      - name: Add CNAME
-        run: cp CNAME dist/
+      - name: Add CNAME and robots.txt
+        run: |
+          cp CNAME dist/
+          cp robots.txt dist/
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
