@@ -5,14 +5,25 @@ on:
     branches: [main]
   workflow_dispatch:
 
+# Allow the workflow to manage GitHub Pages
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
+
+# Cancel in-progress runs for the same branch
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
   build-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout source
+      - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -25,15 +36,17 @@ jobs:
       - name: Build static site
         run: python build.py
 
-      - name: Deploy to gh-pages
-        run: |
-          cd dist
-          git init
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git checkout --orphan gh-pages
-          git add .
-          git commit -m "Deploy site"
-          git push -f https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git gh-pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Add CNAME
+        run: cp CNAME dist/
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
