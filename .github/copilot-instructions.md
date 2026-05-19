@@ -34,7 +34,7 @@ content/events/*.md           ← Event listings (yaml frontmatter, markdown bod
 1. **`site_data.py`** defines a `PAGES` list — each entry has `slug`, `title`, `eyebrow`, `intro`, `description`, optional `body_class`, and HTML `content`.
 2. **`build.py`** imports `PAGES`, `NAV_ITEMS`, and `FOOTER_LINKS` from `site_data.py`.
 3. It also loads markdown files from `content/news/` and `content/events/`.
-4. Pages are written to `dist/{slug}/index.html` (root page → `dist/index.html`).
+4. Pages are written to `dist/{slug}/index.html` (root page → `dist/index.html`). URLs use trailing slashes: `/slug/` (root uses `/`).
 5. News/event details are generated dynamically from markdown files.
 6. **The homepage** gets injected "latest news" and "events" sections via `with_dynamic_sections()`.
 
@@ -51,7 +51,7 @@ content/events/*.md           ← Event listings (yaml frontmatter, markdown bod
 - News and event markdown files use **yaml frontmatter** with fields like `title`, `slug`, `date`/`start_date`, `published`, `summary`, `featured_image`, `body`.
 
 ## Conventions
-- **Slug-based routing**: page slugs determine output paths (`'get-involved'` → `dist/get-involved/index.html`).
+- **Slug-based routing**: page slugs determine output paths (`'get-involved'` → `dist/get-involved/index.html`), URLs are `{slug}/` (root is `/`).
 - **All HTML in Python**: page content is raw HTML strings inside `site_data.py`. Do not refactor this to a templating engine — the entire site fits in ~1,000 lines and is intentionally dependency-free.
 - **CSS uses custom properties**: `--bg`, `--panel`, `--text`, `--brand`, `--brand-dark`, `--shadow`, `--radius`, `--max`. See `assets/styles.css` for all CSS class names and structure.
 - **No JavaScript** on the site (beyond BrowserSync for dev). Navigation is static HTML.
