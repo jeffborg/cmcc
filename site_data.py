@@ -99,20 +99,20 @@ PAGES = [
   <img class="media-image" src="/assets/media/gallery-general.jpg" alt="General club photo from the legacy photo gallery">
 </section>
 <section class="grid thirds">
-  <article class="card">
+  <article class="card card-v">
     <h2>Club officials</h2>
     <p>Meet the committee roles carried over from the current public site.</p>
-    <p><a class="button button-secondary" href="../officials/">View officials</a></p>
+    <p class="btn-fill"><a class="button button-secondary" href="../officials/">View officials</a></p>
   </article>
-  <article class="card">
+  <article class="card card-v">
     <h2>Club constitution</h2>
     <p>A plain-language summary of the constitution content published on the existing site.</p>
-    <p><a class="button button-secondary" href="../constitution/">Read summary</a></p>
+    <p class="btn-fill"><a class="button button-secondary" href="../constitution/">Read summary</a></p>
   </article>
-  <article class="card">
+  <article class="card card-v">
     <h2>Remembrance</h2>
     <p>A tribute to John Hall and his impact on the club and the wider riding community.</p>
-    <p><a class="button button-secondary" href="../remembrance/">Read tribute</a></p>
+    <p class="btn-fill"><a class="button button-secondary" href="../remembrance/">Read tribute</a></p>
   </article>
 </section>
 '''.strip(),
@@ -324,17 +324,17 @@ PAGES = [
         'description': 'Archive of notable public content from the legacy Cessnock Motor Cycle Club website.',
         'content': '''
 <section class="grid two-up">
-  <article class="card media-card">
+  <article class="card media-card card-v">
     <img class="media-image" src="/assets/media/gallery-general.jpg" alt="General club gallery image">
     <h2>Australian Four Day Enduro 2018</h2>
     <p>The legacy event listing notes the 40th anniversary edition of the Australian 4 Day Enduro, returning to Cessnock where it all started.</p>
-    <p><a class="button button-secondary" href="a4de-2018/">Open archive page</a></p>
+    <p class="btn-fill"><a class="button button-secondary" href="a4de-2018/">Open archive page</a></p>
   </article>
-  <article class="card media-card">
+  <article class="card media-card card-v">
     <img class="media-image" src="/assets/media/postie-gp-hero.jpg" alt="Australian Postie Bike GP 2019 event image">
     <h2>Australian Postie Bike GP 2019</h2>
     <p>A family-friendly street event in the Cessnock CBD featuring team racing on Honda CT110 Postie Bikes.</p>
-    <p><a class="button button-secondary" href="postie-bike-gp-2019/">Open archive page</a></p>
+    <p class="btn-fill"><a class="button button-secondary" href="postie-bike-gp-2019/">Open archive page</a></p>
   </article>
 </section>
 <section class="card prose">

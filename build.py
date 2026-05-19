@@ -232,12 +232,12 @@ def render_events_index(entries: list[dict[str, object]]) -> str:
         location = str(entry.get('location', ''))
         meta = ' | '.join(part for part in [when, location] if part)
         cards.append(
-            f'''<article class="card">
+            f'''<article class="card card-v">
   {'<img class="media-image" src="' + html.escape(str(entry["featured_image"])) + '" alt="' + html.escape(str(entry["title"])) + '">' if entry.get('featured_image') else ''}
   <p class="meta-line">{html.escape(meta)}</p>
   <h2>{html.escape(str(entry["title"]))}</h2>
   <p>{html.escape(str(entry.get("summary", "")))}</p>
-  <p><a class="button button-secondary" href="{html.escape(str(entry["slug"]))}/">View event</a></p>
+  <p class="btn-fill"><a class="button button-secondary" href="{html.escape(str(entry["slug"]))}/">View event</a></p>
 </article>'''
         )
     if not cards:
@@ -283,15 +283,15 @@ def with_dynamic_sections(page: dict[str, str], news: list[dict[str, object]], e
 
     extra = f'''
 <section class="grid two-up">
-  <article class="card">
+  <article class="card card-v">
     <h2>Latest news</h2>
     <ul class="link-list">{news_items}</ul>
-    <p><a class="button button-secondary" href="news/">All news</a></p>
+    <p class="btn-fill"><a class="button button-secondary" href="news/">All news</a></p>
   </article>
-  <article class="card">
+  <article class="card card-v">
     <h2>Events</h2>
     <ul class="link-list">{event_items}</ul>
-    <p><a class="button button-secondary" href="events/">All events</a></p>
+    <p class="btn-fill"><a class="button button-secondary" href="events/">All events</a></p>
   </article>
 </section>
 '''
