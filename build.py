@@ -374,7 +374,8 @@ def render_page(page: dict[str, str]) -> str:
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{html.escape(page_title)}</title>
     <meta name="description" content="{html.escape(description)}">
-    <link rel="icon" href="{prefix}assets/media/favicon.ico">
+    <link rel="icon" href="{prefix}assets/media/favicon-32x32.png" type="image/png">
+    <link rel="icon" href="{prefix}assets/media/favicon.png" sizes="any" type="image/png">
     <link rel="stylesheet" href="{prefix}assets/styles.css">
   </head>
   <body>
