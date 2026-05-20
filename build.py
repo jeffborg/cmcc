@@ -439,8 +439,12 @@ def render_page(page: dict[str, str]) -> str:
         <nav class="site-nav" aria-label="Primary">
           {render_nav(slug)}
         </nav>
+        <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </header>
+      <script src="/assets/site.js"></script>
     {hero}
     <main class="container main-content">
       {page['content']}
