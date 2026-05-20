@@ -357,8 +357,9 @@ def render_page(page: dict[str, str]) -> str:
     eyebrow = page.get('eyebrow', 'Cessnock Motor Cycle Club')
     intro = page.get('intro', '')
 
+    body_cls = f' {body_class}' if body_class else ''
     hero = f'''
-    <section class="hero {body_class}">
+<section class="hero{body_cls}">
       <div class="container hero-inner">
         <p class="eyebrow">{html.escape(eyebrow)}</p>
         <h1>{html.escape(title)}</h1>

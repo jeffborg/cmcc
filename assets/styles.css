@@ -9,6 +9,13 @@
   --max: 1120px;
 }
 
+/* Focus ring — visible on any background, respects reduced motion */
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -97,7 +104,7 @@ a:hover {
 
 .nav-link:hover,
 .nav-link.active {
-  color: #fff;
+  color: var(--panel);
   background: rgba(255, 255, 255, 0.12);
 }
 
@@ -108,7 +115,7 @@ a:hover {
 }
 
 .hero-inner {
-  max-width: 52rem;
+  max-width: min(calc(100% - 2rem), var(--max));
 }
 
 .eyebrow {
@@ -147,10 +154,23 @@ a:hover {
   padding: 2rem 0 4rem;
 }
 
+/* Universal section spacing — applies to every child of main except the first */
+main > :not(:first-child) {
+  margin-top: 1.35rem;
+}
+
+/* Grid cards — spacing and margin reset for first-child grids */
 .grid {
   display: grid;
-  gap: 1.35rem;
-  margin-bottom: 1.35rem;
+  gap: 1.5rem;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+@media (max-width: 560px) {
+   main > :not(:first-child) {
+    margin-top: 1rem;
+   }
 }
 
 .two-up {
@@ -167,6 +187,12 @@ a:hover {
   border-radius: var(--radius);
   padding: 1.5rem;
   box-shadow: var(--shadow);
+  transition: transform 200ms ease-out, box-shadow 200ms ease-out;
+}
+ 
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 25px 50px rgba(15, 23, 42, 0.12);
 }
 
 .card-feature {
@@ -196,6 +222,7 @@ a:hover {
 
 .media-card {
   overflow: hidden;
+  position: relative;
 }
 
 .media-image {
@@ -247,16 +274,21 @@ a:hover {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
-  margin-bottom: 1.35rem;
+  margin-bottom: 0;
 }
 
 .gallery-image {
   width: 100%;
   height: 16rem;
   object-fit: cover;
-  border-radius: 16px;
+  border-radius: var(--radius);
   box-shadow: var(--shadow);
-  background: #fff;
+  background: var(--panel);
+  transition: transform 200ms ease-out;
+}
+ 
+.gallery-image:hover {
+  transform: scale(1.02);
 }
 
 .prose > :first-child {
@@ -288,29 +320,35 @@ a:hover {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.75rem 1rem;
+  padding: 0.75rem 1.25rem;
   border-radius: 999px;
   background: var(--brand);
-  color: #fff;
+  color: var(--panel);
   font-weight: 700;
   text-decoration: none;
+  transition: background-color 200ms ease-out;
 }
-
+ 
 .button:hover {
   background: var(--brand-dark);
-  color: #fff;
+  color: var(--panel);
 }
-
+ 
 .button-secondary {
-  background: #111827;
+  background: var(--bg);
 }
-
+ 
 .button-secondary:hover {
-  background: #000;
+  background: var(--brand);
+}
+ 
+.button-secondary,
+.button {
+  transition: background-color 200ms ease-out;
 }
 
 .site-footer {
-  background: #0f172a;
+  background: var(--bg);
   color: rgba(255, 255, 255, 0.88);
   padding: 2rem 0;
 }
@@ -325,7 +363,7 @@ a:hover {
 .footer-inner p {
   margin-bottom: 0;
   max-width: 34rem;
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(255, 255, 255, 0.64);
 }
 
 .footer-links {
