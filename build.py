@@ -487,7 +487,9 @@ def main() -> None:
     pages = build_pages()
     for page in pages:
         write_page(page)
-    shutil.copy(ROOT / '404.html', DIST / '404.html')
+    _404_src = ROOT / '404.html'
+    _404_dst = DIST / '404.html'
+    _404_dst.write_text(_fingerprint_html(_404_src.read_text(encoding='utf-8')), encoding='utf-8')
     print(f"Built {len(pages)} pages into {DIST}")
 
 
