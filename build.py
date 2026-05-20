@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import html
 import re
 import shutil
@@ -13,6 +14,56 @@ DIST = ROOT / "dist"
 ASSETS_SRC = ROOT / "assets"
 ASSETS_DST = DIST / "assets"
 CONTENT_ROOT = ROOT / "content"
+
+ASSET_MAP: dict[str, str] = {}
+
+def _fingerprint(path):
+    """Return a short hex digest of a file's content."""
+    return hashlib.sha256(path.read_bytes()).hexdigest()[:8]
+
+def build_asset_map() -> None:
+    """Fingerprint every file under assets/ and populate ASSET_MAP."""
+    ASSET_MAP.clear()
+    for fpath in ASSETS_SRC.rglob("*"):
+        if fpath.is_file():
+            rel = fpath.relative_to(ASSETS_SRC)
+            key = f"assets/{rel.as_posix()}"
+            stem = fpath.stem
+            suffix = fpath.suffix
+            h = _fingerprint(fpath)
+            ASSET_MAP[key] = f"{stem}-{h}{suffix}"
+
+def asset_href(path):
+    """Turn an asset reference into a fingerprinted one."""
+    for prefix_str in ("../assets/", "./assets/"):
+        if path.startswith(prefix_str):
+            stripped = path[len(prefix_str):]
+            key = f"assets/{stripped}"
+            if key in ASSET_MAP:
+                return f"{prefix_str}{ASSET_MAP[key]}"
+            return path
+    if path.startswith("/assets/"):
+        key = path[1:]
+        if key in ASSET_MAP:
+            return f"/{ASSET_MAP[key]}"
+    return path
+
+
+_ASSET_RE = re.compile(r'((?:\.\./)*(?:\./)?(?:/)?assets/)([\w\-]+(?:/[\w\-]+)*\.\w+)')
+
+def _replace_assets(m: re.Match) -> str:
+    """Replace an asset path with its fingerprinted version, preserving prefix."""
+    prefix = m.group(1)
+    path = m.group(2)
+    key = f"assets/{path}"
+    if key in ASSET_MAP:
+        return prefix + ASSET_MAP[key]
+    return m.group(0)
+
+
+def _fingerprint_html(html: str) -> str:
+    """Scan HTML and fingerprint all /assets/... references."""
+    return _ASSET_RE.sub(_replace_assets, html)
 
 
 def page_depth(slug: str) -> int:
@@ -375,15 +426,15 @@ def render_page(page: dict[str, str]) -> str:
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{html.escape(page_title)}</title>
     <meta name="description" content="{html.escape(description)}">
-    <link rel="icon" href="{prefix}assets/media/favicon-32x32.png" type="image/png">
-    <link rel="icon" href="{prefix}assets/media/favicon.png" sizes="any" type="image/png">
-    <link rel="stylesheet" href="{prefix}assets/styles.css">
+    <link rel="icon" href={asset_href(f"{prefix}assets/media/favicon-32x32.png")} type="image/png">
+    <link rel="icon" href={asset_href(f"{prefix}assets/media/favicon.png")} sizes="any" type="image/png">
+    <link rel="stylesheet" href={asset_href(f"{prefix}assets/styles.css")}>
   </head>
   <body>
     <header class="site-header">
       <div class="container header-inner">
         <a class="brand" href="{relative_href(slug, '')}">
-          <img class="brand-logo" src="{prefix}assets/media/club-logo.png" alt="Cessnock Motor Cycle Club logo">
+          <img class="brand-logo" src={asset_href(f"{prefix}assets/media/club-logo.png")} alt="Cessnock Motor Cycle Club logo">
         </a>
         <nav class="site-nav" aria-label="Primary">
           {render_nav(slug)}
@@ -414,14 +465,25 @@ def write_page(page: dict[str, str]) -> None:
     slug = page['slug']
     target_dir = DIST if slug == '' else DIST / slug
     target_dir.mkdir(parents=True, exist_ok=True)
-    (target_dir / 'index.html').write_text(render_page(page), encoding='utf-8')
+    html = render_page(page)
+    html = _fingerprint_html(html)
+    (target_dir / 'index.html').write_text(html, encoding='utf-8')
 
 
 def main() -> None:
     if DIST.exists():
         shutil.rmtree(DIST)
     DIST.mkdir()
-    shutil.copytree(ASSETS_SRC, ASSETS_DST, dirs_exist_ok=True)
+    build_asset_map()
+    for fpath in ASSETS_SRC.rglob("*"):
+        if fpath.is_file():
+            rel = fpath.relative_to(ASSETS_SRC)
+            for key, fname in ASSET_MAP.items():
+                if rel == Path(key.replace("assets/", "", 1)):
+                    dst = ASSETS_DST / fname
+                    dst.parent.mkdir(parents=True, exist_ok=True)
+                    shutil.copy2(fpath, dst)
+                    break
     pages = build_pages()
     for page in pages:
         write_page(page)
