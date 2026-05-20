@@ -384,10 +384,6 @@ def render_page(page: dict[str, str]) -> str:
       <div class="container header-inner">
         <a class="brand" href="{relative_href(slug, '')}">
           <img class="brand-logo" src="{prefix}assets/media/club-logo.png" alt="Cessnock Motor Cycle Club logo">
-          <span class="brand-copy">
-            <strong>{html.escape(SITE_NAME)}</strong>
-            <span>Family-friendly off road motorcycle club</span>
-          </span>
         </a>
         <nav class="site-nav" aria-label="Primary">
           {render_nav(slug)}
