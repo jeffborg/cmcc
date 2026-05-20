@@ -2,7 +2,7 @@
 title: GreenSlipCalculator.com.au welcomed as club sponsor
 slug: greenslipcalculator-sponsor
 date: 2018-03-03
-published: false
+published: true
 summary: GreenSlipCalculator.com.au was welcomed as a club sponsor on the legacy site.
 featured_image: /assets/media/sponsor-greenslipcalculator.jpg
 ---
