@@ -205,7 +205,7 @@ def render_news_index(entries: list[dict[str, object]]) -> str:
 </article>'''
         )
     if not cards:
-        cards.append('<article class="card"><h2>No news posts yet</h2><p>Use Pages CMS to publish the first article.</p></article>')
+        cards.append('<article class="card"><h2>No news posts yet</h2><p>Publish the first article from the repo.</p></article>')
     return f'<section class="grid two-up">{"".join(cards)}</section>'
 
 
@@ -241,7 +241,7 @@ def render_events_index(entries: list[dict[str, object]]) -> str:
 </article>'''
         )
     if not cards:
-        cards.append('<article class="card"><h2>No events yet</h2><p>Use Pages CMS to add the first event.</p></article>')
+        cards.append('<article class="card"><h2>No events yet</h2><p>Add the first event from the repo.</p></article>')
     return f'<section class="grid two-up">{"".join(cards)}</section>'
 
 
@@ -309,7 +309,7 @@ def build_pages() -> list[dict[str, str]]:
         'slug': 'news',
         'title': 'News',
         'eyebrow': 'Club updates',
-        'intro': 'Announcements, public updates, and news posts managed through Pages CMS.',
+        'intro': 'Announcements and public updates from the club.',
         'description': 'News posts for Cessnock Motor Cycle Club.',
         'content': render_news_index(news_entries),
     })
@@ -317,7 +317,7 @@ def build_pages() -> list[dict[str, str]]:
         'slug': 'events',
         'title': 'Events',
         'eyebrow': 'Club calendar',
-        'intro': 'Public event entries managed through Pages CMS.',
+        'intro': 'Public event listings for the club.',
         'description': 'Event listings for Cessnock Motor Cycle Club.',
         'content': render_events_index(event_entries),
     })

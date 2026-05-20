@@ -6,7 +6,7 @@ brand
 
 ## Users
 
-Local club members and their families who use the site to find meeting times, browse upcoming events and results, view news and photo galleries, and discover how to join or volunteer. Editors (committee members) also use the repo/Pages CMS to keep content up to date.
+Local club members and their families who use the site to find meeting times, browse upcoming events and results, view news and photo galleries, and discover how to join or volunteer. Editors (committee members) also use the repo to keep content up to date.
 
 ## Product Purpose
 
@@ -27,7 +27,7 @@ Welcoming, community-focused, approachable
 - Content-first: information (events, membership, contact) must be immediately findable and scannable.
 - Community-first imagery: use real club photos and preserved legacy media to convey history and belonging.
 - Clear affordances: large, readable type, clear link/buttons for membership and event actions.
-- Maintainability: design must be easy to update via Pages CMS and simple static rebuilds.
+- Maintainability: design must be easy to update and simple to rebuild.
 - Accessible: meet WCAG AA standards and provide reduced-motion and clear focus states.
 
 ## Accessibility & Inclusion
