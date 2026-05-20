@@ -45,8 +45,7 @@ a:hover {
 
 .site-header {
   background: var(--panel);
-  position: sticky;
-  top: 0;
+  position: relative;
   z-index: 10;
   box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
 }
@@ -388,23 +387,19 @@ main > :not(:first-child) {
 
   .site-nav {
   display: none;
-  position: fixed;
-  top: 3.5rem;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  background: var(--panel);
-  flex-direction: column;
-  align-items: center;
-  gap: 0.3rem;
-  padding: 1rem;
-  overflow-y: auto;
-  z-index: 9;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
   }
 
   .site-nav.nav-open {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  inset: 0;
+  background: var(--panel);
+  z-index: 9;
+  gap: 0.5rem;
+  padding: 2rem 1rem;
   }
 
   .nav-link {
@@ -422,6 +417,10 @@ main > :not(:first-child) {
   border: none;
   cursor: pointer;
   padding: 0.4rem;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
   z-index: 11;
   }
 
@@ -461,6 +460,11 @@ main > :not(:first-child) {
   body.scrolled .brand-logo {
   width: 7rem;
   transition: width 250ms ease-out;
+  }
+
+  .site-header {
+  position: sticky;
+  top: 0;
   }
 
   .footer-links {
