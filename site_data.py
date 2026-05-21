@@ -35,6 +35,7 @@ PAGES = [
         'intro': 'Family-friendly riding, volunteer-led events, and a strong enduro culture for juniors, social riders, and serious racers alike.',
         'description': SITE_DESCRIPTION,
         'body_class': 'hero-home',
+        'hero_image': 'home-hero.jpg',
         'content': '''
 <section class="grid two-up">
   <article class="card media-card">
@@ -90,6 +91,7 @@ PAGES = [
         'eyebrow': 'About Cessnock MCC',
         'intro': 'A welcoming club with deep local roots, volunteer energy, and a strong off road racing tradition.',
         'description': 'About the history, purpose, and supporting information for Cessnock Motor Cycle Club.',
+        'hero_image': 'gallery-general.jpg',
         'content': '''
 <section class="card prose">
   <p>The existing club website describes Cessnock Motor Cycle Club as a place where knowledge, history, and community all come together. The club has long balanced family-friendly participation with serious racing, and it continues to rely on passionate members and volunteers to keep events running.</p>

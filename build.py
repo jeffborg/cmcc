@@ -409,24 +409,43 @@ def render_page(page: dict[str, str]) -> str:
     intro = page.get('intro', '')
 
     body_cls = f' {body_class}' if body_class else ''
-    # Derive a hero background from the first image in page content, if present.
+    # Prefer an explicit per-page hero_image; fall back to the first image in page content.
     hero_style = ''
-    m = re.search(r'src="(/assets/[^"]+)"', page.get('content', ''))
-    if m:
-        # Prefer a fingerprinted /assets/... path when available
-        key = m.group(1).lstrip('/')
-        if key in ASSET_MAP:
-            bg = f'/assets/{ASSET_MAP[key]}'
+    hero_img = page.get('hero_image')
+    if hero_img:
+        # Normalize hero_image to an assets path. Accept values such as
+        # 'home-hero.jpg', 'assets/media/home-hero.jpg' or '/assets/home-hero.jpg'.
+        if hero_img.startswith('/'):
+            candidate = hero_img.lstrip('/')
+        elif hero_img.startswith('assets/'):
+            candidate = hero_img
         else:
-            bg = m.group(1)
+            candidate = f'assets/media/{hero_img}'
+        if candidate in ASSET_MAP:
+            bg = f'/assets/{ASSET_MAP[candidate]}'
+        else:
+            bg = f'/{candidate}'
         hero_style = f' style="--hero-bg: linear-gradient(rgba(17,24,39,0.25), rgba(17,24,39,0.25)), url({bg}) center/cover"'
+    else:
+        m = re.search(r'src="(/assets/[^"]+)"', page.get('content', ''))
+        if m:
+            # Prefer a fingerprinted /assets/... path when available
+            key = m.group(1).lstrip('/')
+            if key in ASSET_MAP:
+                bg = f'/assets/{ASSET_MAP[key]}'
+            else:
+                bg = m.group(1)
+            hero_style = f' style="--hero-bg: linear-gradient(rgba(17,24,39,0.25), rgba(17,24,39,0.25)), url({bg}) center/cover"'
 
+    # Wrap hero content in a semi-opaque panel for legibility and structure.
     hero = f'''
 <section class="hero{body_cls}"{hero_style}>
       <div class="container hero-inner">
-        <p class="eyebrow">{html.escape(eyebrow)}</p>
-        <h1>{html.escape(title)}</h1>
-        <p class="intro">{intro}</p>
+        <div class="hero-panel">
+          <p class="eyebrow">{html.escape(eyebrow)}</p>
+          <h1>{html.escape(title)}</h1>
+          <p class="intro">{intro}</p>
+        </div>
       </div>
     </section>
     '''

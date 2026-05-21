@@ -116,6 +116,19 @@ a:hover {
 
 .hero .hero-inner { position: relative; z-index: 2; }
 
+/* Semi-opaque panel behind hero text for improved separation from image */
+.hero-panel {
+  display: inline-block;
+  background: rgba(0,0,0,0.42);
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  max-width: 60ch;
+}
+
+.hero-panel .eyebrow { margin: 0 0 0.6rem; color: #fca5a5; font-weight:700; }
+.hero-panel h1 { margin: 0; text-shadow: 0 6px 18px rgba(0,0,0,0.6); }
+.hero-panel .intro { margin-top: 0.75rem; text-shadow: 0 4px 14px rgba(0,0,0,0.45); }
+
 .hero-inner {
   max-width: min(calc(100% - 2rem), var(--max));
 }
