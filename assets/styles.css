@@ -97,10 +97,24 @@ a:hover {
 }
 
 .hero {
-  background: radial-gradient(circle at top left, rgba(248, 113, 113, 0.24), transparent 30%), linear-gradient(135deg, #111827, #1f2937 65%, #7f1d1d);
+  background: var(--hero-bg, radial-gradient(circle at top left, rgba(248, 113, 113, 0.24), transparent 30%), linear-gradient(135deg, #111827, #1f2937 65%, #7f1d1d));
   color: #fff;
   padding: 4rem 0 3rem;
+  position: relative;
+  overflow: hidden;
 }
+
+/* Site-wide hero overlay for improved text legibility */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.60), rgba(0,0,0,0.35));
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero .hero-inner { position: relative; z-index: 2; }
 
 .hero-inner {
   max-width: min(calc(100% - 2rem), var(--max));

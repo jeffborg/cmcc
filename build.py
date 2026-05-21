@@ -409,8 +409,20 @@ def render_page(page: dict[str, str]) -> str:
     intro = page.get('intro', '')
 
     body_cls = f' {body_class}' if body_class else ''
+    # Derive a hero background from the first image in page content, if present.
+    hero_style = ''
+    m = re.search(r'src="(/assets/[^"]+)"', page.get('content', ''))
+    if m:
+        # Prefer a fingerprinted /assets/... path when available
+        key = m.group(1).lstrip('/')
+        if key in ASSET_MAP:
+            bg = f'/assets/{ASSET_MAP[key]}'
+        else:
+            bg = m.group(1)
+        hero_style = f' style="--hero-bg: linear-gradient(rgba(17,24,39,0.25), rgba(17,24,39,0.25)), url({bg}) center/cover"'
+
     hero = f'''
-<section class="hero{body_cls}">
+<section class="hero{body_cls}"{hero_style}>
       <div class="container hero-inner">
         <p class="eyebrow">{html.escape(eyebrow)}</p>
         <h1>{html.escape(title)}</h1>
